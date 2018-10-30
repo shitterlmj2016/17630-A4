@@ -24,7 +24,7 @@ public class Main {
         job.setPriority(3);
         heap.addItem(job);
         job.setName("J3");
-        job.setPriority(1);
+        job.setPriority(3);
         heap.addItem(job);
         job.setName("J4");
         job.setPriority(7);
@@ -39,9 +39,6 @@ public class Main {
         job.setPriority(19);
         heap.addItem(job);
         /*Test Section*/
-        heap.traverse();
-        System.out.println("Start deleting:");
-        heap.delete("J2");
         heap.traverse();
         heap=print(heap);
         System.out.println("Second Print:");
