@@ -53,24 +53,5 @@ public class Node {
         this.next = next;
     }
 
-//Move upwards
-//    public void swim()
-//    {
-//        while (this.father!=null && this.item<this.father.item)
-//        {
-//            swap(this,this.father);
-//        }
-//
-//    }
-
-//    public void swap(Node a, Node b){
-//        int tempItem=a.item;
-//        a.item=b.item;
-//        b.item=tempItem;
-//    }
-
-//    public void passItem(){
-//
-//    }
 
 }

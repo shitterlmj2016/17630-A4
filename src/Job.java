@@ -2,6 +2,11 @@ public class Job {
 
     private String name;
     private int priority;
+
+    public Job() {
+
+    }
+
     //Constructor
     public Job(String name, int priority) {
         this.name = name;
