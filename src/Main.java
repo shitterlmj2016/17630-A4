@@ -14,6 +14,7 @@ public class Main {
         return clone;
     }
 
+
     public static void main(String[] args) {
         Heap heap = new Heap();
         Job job = new Job();
@@ -33,7 +34,7 @@ public class Main {
         job.setPriority(8);
         heap.addItem(job);
         job.setName("J6");
-        job.setPriority(20);
+        job.setPriority(3);
         heap.addItem(job);
         job.setName("J7");
         job.setPriority(19);
