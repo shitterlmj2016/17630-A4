@@ -224,6 +224,17 @@ public class Heap {
         return topJob;
     }
 
+    public void popInfo() {
+        if (isEmpty())
+            return;
+        Job topJob = pop();
+        System.out.println("The next priority item is:");
+        System.out.println("Name: " + topJob.getName() + ", Priority: " + topJob.getPriority());
+        System.out.println("This job has been deleted successfully!");
+        System.out.println("There are "+size+" job(s) left.");
+    }
+
+
     public void delete(String name) {
         if (!isIn(name)) {
             System.out.println("Sorry, no such job!");
@@ -235,11 +246,12 @@ public class Heap {
             temp = temp.getNext();
             index++;
         }
-        System.out.println("Name is: " + temp.getItem().getName() + ", priority is: " + temp.getItem().getPriority());
-        System.out.println("This is the " + index + " node.");
+        System.out.println("Job found:");
+        System.out.println("Name : " + temp.getItem().getName() + " ; Priority : " + temp.getItem().getPriority());
         temp.setItem(tail.getItem());
         cutTail();
-
+        System.out.println("This job has been deleted successfully!");
+        System.out.println("There are "+size+" job(s) left.");
 
         for(int i=0;i<size;i++)
         {
