@@ -1,3 +1,4 @@
+
 public class Node {
     private Job item;
     private Node father;

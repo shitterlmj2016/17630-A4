@@ -1,8 +1,14 @@
-public class Heap {
-    private int size;
-    private Node root;
-    private Node tail;
+//17630-A4 Priority Queue
+//Andrew ID: xinchenh
+//Name: Xincheng Huang
+//Heap Class
+//This class represents the heap ADT.
 
+public class Heap {
+    private int size;//Total numbers in the heap
+    private Node root;//Top node of the heap
+    private Node tail;//The last node of the heap
+    //Construction function
     public Heap() {
         this.size = 0;
         Job job = new Job("0", 0);

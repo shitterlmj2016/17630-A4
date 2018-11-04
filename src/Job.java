@@ -1,5 +1,11 @@
-public class Job {
+//17630-A4 Priority Queue
+//Andrew ID: xinchenh
+//Name: Xincheng Huang
+//Job Class
+//This class represents the job described in the hand out.
 
+public class Job {
+    //Job name and its priority
     private String name;
     private int priority;
 
