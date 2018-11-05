@@ -53,12 +53,12 @@ public class Heap {
         return size;
     }
 
+    //Add a new job to the heap, return the size of the heap
     public int append(Job newItem) {
         Job item = new Job(newItem.getName(), newItem.getPriority());
         Node node = new Node(item, null, null, null, null);
-        //System.out.println("The item is "+item);
-        //System.out.println("The size before insert is "+ size);
-        //If the heap is empty
+
+        //Check if the heap is empty
         if (isEmpty()) {
             root.setItem(node.getItem());
             size++;
@@ -67,36 +67,33 @@ public class Heap {
 
         //If the heap is not empty
         tail.setNext(node);
+        //Get the father node
         int fatherIndex = (size - 1) / 2;
-        //System.out.println("Father index is "+fatherIndex);
+        //Check if it's a left child or a right child
         int childType = size % 2;
 
-        //System.out.println("The child type is "+ childType);
         Node tempNode = root;
         for (int i = 0; i < fatherIndex; i++) {
             tempNode = tempNode.getNext();
         }
 
-        //System.out.println("Real father index is "+tempNode.getItem());
+        //The father is found
         node.setFather(tempNode);
         if (childType == 0) {
             tempNode.setRightChild(node);
-            //System.out.println("The right child of node "+tempNode.getItem()+" is "+ node.getItem());
         } else tempNode.setLeftChild(node);
-        //System.out.println("The left child of node "+tempNode.getItem()+" is "+ node.getItem());
         tail = tail.getNext();
         size++;
         return size;
     }
 
-    //Traverse the heap
+    //A test function. Traverse the heap from left to right, top to bottom
     public void traverse() {
         System.out.println("There are " + size + " nodes in the heap:");
         if (isEmpty()) {
             System.out.println("The heap is empty");
             return;
         }
-
         Node temp = root;
         int counter = 0;
         while (counter < size) {
@@ -134,6 +131,7 @@ public class Heap {
         else System.out.println("The next node is: " + temp.getNext().getItem().getName());
     }
 
+    //Check if a certain node is in the heap
     public boolean isIn(String name) {
         Node temp = root;
         int counter = 0;
@@ -146,7 +144,7 @@ public class Heap {
         return false;
     }
 
-
+    //up heap
     public void swimUp(Node node) {
         Node temp = node;
         if(temp.getFather() == null)
@@ -159,14 +157,15 @@ public class Heap {
         }
     }
 
-
+    //up heap the tail node
     public void swimTail() {
         swimUp(tail);
     }
 
+    //down heap
     public void swimDown() {
         Node temp = root;
-        //If the node has a leftchild or a rightchild that has a priority higher than it
+        //If the node has a left child or a right child that has a priority higher than it
         while ((temp.getLeftChild() != null &&
                 temp.getItem().getPriority() >
                         temp.getLeftChild().getItem().getPriority()) ||
@@ -174,14 +173,17 @@ public class Heap {
                         temp.getItem().getPriority() >
                                 temp.getRightChild().getItem().getPriority())
         ) {
+            //Choose a child node to switch
             if (temp.getRightChild() == null ||
                     temp.getLeftChild().getItem().getPriority()
                             < temp.getRightChild().getItem().getPriority()) {
+                //Choose left
                 Job tempJob = temp.getItem();
                 temp.setItem(temp.getLeftChild().getItem());
                 temp.getLeftChild().setItem(tempJob);
                 temp = temp.getLeftChild();
             } else {
+                //Choose right
                 Job tempJob = temp.getItem();
                 temp.setItem(temp.getRightChild().getItem());
                 temp.getRightChild().setItem(tempJob);
@@ -194,18 +196,23 @@ public class Heap {
 
     }
 
+    //Add an item to the heap
     public void addItem(Job item) {
+        //put the item at the tail
         append(item);
+        //heapify
         swimTail();
     }
 
-
-    public void cutTail() {   //If it is a empty heap
+    //Delete the tail node
+    public void cutTail() {
+        //If it is a empty heap
         if (isEmpty())
             return;
         if (tail.getFather() != null) {
-            //System.out.println("The father of "+tail.getItem().getName()+" is "+tail.getFather().getItem().getName());
+            //Is not the root node
             int childType = size % 2;
+            //Check if it is the left child or the right child
             if (childType == 1) {
                 tail.getFather().setRightChild(null);
             } else tail.getFather().setLeftChild(null);
@@ -217,19 +224,26 @@ public class Heap {
         }
         pointer.setNext(null);
         tail = pointer;
+        //If the node to delete is the father node
+        //Though the node still lives here
+        //The size will be zero after the deletion
+        //This heap will still become a empty and the original will be rewritten in the future
         size--;
     }
 
+    //Pop out the next priority job
     public Job pop() {
         if (isEmpty())
             return null;
         Job topJob = root.getItem();
         root.setItem(tail.getItem());
+        //Heapfy
         swimDown();
         cutTail();
         return topJob;
     }
 
+    //Print the information of the popped out node
     public void popInfo() {
         if (isEmpty())
             return;
@@ -240,7 +254,7 @@ public class Heap {
         System.out.println("There are "+size+" job(s) left.");
     }
 
-
+    //Search a job and delete it if it exists
     public void delete(String name) {
         if (!isIn(name)) {
             System.out.println("Sorry, no such job!");
@@ -261,12 +275,12 @@ public class Heap {
 
         for(int i=0;i<size;i++)
         {
-            //From tail to head, swim up each node
             Node curr=root;
             for(int j=0;j<size-i-1;j++)
             {
                 curr=curr.getNext();
             }
+            //heapfy all node
             swimUp(curr);
         }
 

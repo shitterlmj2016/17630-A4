@@ -1,8 +1,14 @@
+
+//17630-A4 Priority Queue
+//Andrew ID: xinchenh
+//Name: Xincheng Huang
+//Main Class
+//This class provides the user interface
 import java.io.*;
 import java.util.Scanner;
-
 public class Main {
 
+    //Print the given heap
     static Heap print(Heap heap) {
         if (heap.isEmpty()) {
             System.out.println("The queue is empty!");
@@ -19,7 +25,7 @@ public class Main {
         }
         return clone;
     }
-
+//This function checks if a string is a integer number
     static boolean isNumeric(String str) {
         for (int i = str.length(); --i >= 0; ) {
             if (!Character.isDigit(str.charAt(i))) {
@@ -35,7 +41,7 @@ public class Main {
         boolean Done = false;                // Test loop flag
         String Option = null;                // Menu choice from user
 
-
+        //Modify from the provided demo code
         while (!Done) {
             // Here we present the main menu
 
@@ -57,6 +63,7 @@ public class Main {
                 Job item = new Job();
                 System.out.println("Please input the file path: ");
                 System.out.println("Example: C:\\Users\\xchuang1995\\Desktop\\jobs.txt");
+                //Scan the input string
                 Scanner sc = new Scanner(System.in);
                 System.out.print("\n>>>> ");
                 String address = sc.nextLine();
@@ -76,6 +83,7 @@ public class Main {
                     isr = new InputStreamReader(fis);// InputStreamReader
                     br = new BufferedReader(isr);// BufferedReader
                     int count = 0;
+                    //Check if user's input is legal
                     while ((str = br.readLine()) != null) {
 
                         String temp[] = str.split(":");
@@ -91,6 +99,7 @@ public class Main {
                         count++;
                         System.out.println(count + ": " + "Name: " + temp[0] + " Priority: " + temp[1]);
                         item.setName(temp[0]);
+                        //Convert from string to integer
                         item.setPriority(Integer.valueOf(temp[1]).intValue());
                         heap.addItem(item);
                     }
@@ -121,6 +130,7 @@ public class Main {
             if (Option.equals("2")) {
                 Job item = new Job();
                 Scanner sc = new Scanner(System.in);
+                //Getting input from the keyboard
                 System.out.println("Please input the job's name:");
                 System.out.print("\n>>>> ");
                 String name = sc.nextLine();
@@ -134,6 +144,7 @@ public class Main {
                 System.out.println("Please input the job's priority (0-20):");
                 System.out.print("\n>>>> ");
                 String priority = UserInput.KeyboardReadString();
+                //Check if the input number is legal
                 if (!isNumeric(priority)) {
                     System.out.println("Illegal input!");
                     continue;
@@ -187,11 +198,12 @@ public class Main {
 
             }
 
+            //Print the heap based on priority
             if (Option.equals("5")) {
                 heap = print(heap);
             }
 
-
+            //Print the heap's size
             if (Option.equals("6")) {
                 System.out.println("There are " + heap.size() + " jobs in the queue.");
             }

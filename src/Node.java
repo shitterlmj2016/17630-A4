@@ -1,11 +1,16 @@
-
+//17630-A4 Priority Queue
+//Andrew ID: xinchenh
+//Name: Xincheng Huang
+//Node Class
+//This class represents the node of the heap.
 public class Node {
-    private Job item;
-    private Node father;
-    private Node leftChild;
-    private Node rightChild;
-    private Node next;
+    private Job item;//Stored job
+    private Node father;//Father node
+    private Node leftChild;//Left child node
+    private Node rightChild;//Right child node
+    private Node next;//Next node, from top to bottom, left to right.
 
+    //Construction Function
     public Node(Job item, Node father, Node liftChild, Node rightChild, Node next) {
         this.item = item;
         this.father = father;
@@ -13,7 +18,7 @@ public class Node {
         this.rightChild = rightChild;
         this.next = next;
     }
-
+    //Setters and getters
     public Job getItem() {
         return item;
     }
